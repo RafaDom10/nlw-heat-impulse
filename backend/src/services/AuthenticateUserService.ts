@@ -8,8 +8,8 @@ interface IAccessTokenResponse {
 
 interface IUserResponse {
   avatar_url: string;
-  id: number;
   login: string;
+  id: number;
   name: string;
 }
 
@@ -24,7 +24,7 @@ class AuthenticateUserService {
         code,
       },
       headers: {
-        'Accept': 'application/json'
+        Accept: 'application/json'
       }
     });
 
@@ -39,7 +39,7 @@ class AuthenticateUserService {
     let user = await prismaClient.user.findFirst({
       where: {
         github_id: id
-      }
+      },
     });
 
     if (!user) {
@@ -48,8 +48,8 @@ class AuthenticateUserService {
           github_id: id,
           login,
           avatar_url,
-          name
-        }
+          name,
+        },
       });
     }
 
@@ -70,4 +70,4 @@ class AuthenticateUserService {
   }
 }
 
-export { AuthenticateUserService }
+export { AuthenticateUserService };
